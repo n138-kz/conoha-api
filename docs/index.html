@@ -31,13 +31,6 @@
 				});
 				ep.addEventListener('change', (ec)=>{
 					let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
-					if(false
-						||credentials === null
-						||credentials === undefined
-						||credentials === ''
-					){
-						credentials = {username:null,password:null,tenantId:null,};
-					}
 					credentials[ec.target.id] = ec.target.value;
 					sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 				});
