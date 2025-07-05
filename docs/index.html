@@ -72,6 +72,7 @@
 		}
 		async function getTokens(button) {
 			button.disabled = true;
+
 			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 			if(false
 				||credentials === null
