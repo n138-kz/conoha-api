@@ -78,6 +78,8 @@
 			<legend>tenant-id</legend>
 			<input type="text" id="tenantId">
 		</fieldset>
+		<input type="button" value="トークン発行">
+		<input type="button" value="キャッシュ削除" onclick="if(window.confirm('キャッシュデータ削除しますか？\n不具合が発生している場合のみお試しください。')){localStorage.clear();sessionStorage.clear();location.reload();}">
 	</form>
 </body>
 </html>
