@@ -46,6 +46,21 @@
 				credentials = {username:null,password:null,tenantId:null,};
 				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 			}
+			credentials = JSON.parse(credentials);
+			console.log(credentials);
+
+			let list = ['username','password','tenantId',];
+			for (let i=0; i<list.length; i++) {
+				console.log(credentials[list[i]]);
+				if(false
+					||credentials[list[i]] === null
+					||credentials[list[i]] === undefined
+					||credentials[list[i]] === ''
+				){
+					credentials[list[i]] = '';
+				}
+				document.querySelector('form fieldset input#'+list[i]).value = credentials[list[i]];
+			}
 		});
 	</script>
 </head>
