@@ -43,15 +43,12 @@
 				||credentials === undefined
 				||credentials === ''
 			){
-				credentials = {username:null,password:null,tenantId:null,};
-				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
+				localcache_init();
 			}
 			credentials = JSON.parse(credentials);
-			console.log(credentials);
 
 			let list = ['username','password','tenantId',];
 			for (let i=0; i<list.length; i++) {
-				console.log(credentials[list[i]]);
 				if(false
 					||credentials[list[i]] === null
 					||credentials[list[i]] === undefined
@@ -62,6 +59,41 @@
 				document.querySelector('form fieldset input#'+list[i]).value = atob(credentials[list[i]]);
 			}
 		});
+		function localcache_init() {
+			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+			if(false
+				||credentials === null
+				||credentials === undefined
+				||credentials === ''
+			){
+				credentials = {username:null,password:null,tenantId:null,};
+				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
+			}
+		}
+		function getTokens() {
+			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+			if(false
+				||credentials === null
+				||credentials === undefined
+				||credentials === ''
+			){
+				localcache_init();
+			}
+			credentials = JSON.parse(credentials);
+
+			let list = ['username','password','tenantId',];
+			for (let i=0; i<list.length; i++) {
+				if(false
+					||credentials[list[i]] === null
+					||credentials[list[i]] === undefined
+					||credentials[list[i]] === ''
+				){
+					credentials[list[i]] = '';
+				}
+				document.querySelector('form fieldset input#'+list[i]).value = atob(credentials[list[i]]);
+			}
+			
+		}
 	</script>
 </head>
 <body>
@@ -78,7 +110,7 @@
 			<legend>tenant-id</legend>
 			<input type="text" id="tenantId">
 		</fieldset>
-		<input type="button" value="トークン発行">
+		<input type="button" value="トークン発行" onclick="getTokens();">
 		<input type="button" value="キャッシュ削除" onclick="if(window.confirm('キャッシュデータ削除しますか？\n不具合が発生している場合のみお試しください。')){localStorage.clear();sessionStorage.clear();location.reload();}">
 	</form>
 </body>
