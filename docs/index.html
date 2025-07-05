@@ -42,6 +42,15 @@
 					sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 				});
 			});
+			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+			if(false
+				||credentials === null
+				||credentials === undefined
+				||credentials === ''
+			){
+				credentials = {username:null,password:null,tenantId:null,};
+				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
+			}
 		});
 	</script>
 </head>
