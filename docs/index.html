@@ -30,7 +30,6 @@
 					ec.target.select();
 				});
 				ep.addEventListener('change', (ec)=>{
-					console.log(ec.target.id);
 					let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 					if(false
 						||credentials === null
