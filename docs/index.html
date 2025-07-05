@@ -23,6 +23,15 @@
 			width: stretch;
 		}
 	</style>
+	<script>
+		window.addEventListener('DOMContentLoaded', async ()=>{
+			Array.from(document.querySelectorAll('form fieldset input')).map((ep)=>{
+				ep.addEventListener('click', (ec)=>{
+					ec.target.select();
+				});
+			});
+		});
+	</script>
 </head>
 <body>
 	<form action="" method="post">
