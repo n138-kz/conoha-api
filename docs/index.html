@@ -70,7 +70,8 @@
 				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 			}
 		}
-		function getTokens() {
+		async function getTokens(button) {
+			button.disabled = true;
 			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 			if(false
 				||credentials === null
@@ -90,9 +91,23 @@
 				){
 					credentials[list[i]] = '';
 				}
-				document.querySelector('form fieldset input#'+list[i]).value = atob(credentials[list[i]]);
+			}
+
+			try {
+				let endpoint = 'https://identity.tyo1.conoha.io/v2.0/tokens';
+				let req = await fetch(endpoint, {
+					method: 'POST',
+					mode: "cors",
+					headers: {
+						Accept: 'application/json',
+						"Content-Type": "application/json;charset=utf-8",
+					},
+				})
+			} catch (th) {
+				console.error(th);
 			}
 			
+			button.disabled = false;
 		}
 	</script>
 </head>
@@ -110,7 +125,7 @@
 			<legend>tenant-id</legend>
 			<input type="text" id="tenantId">
 		</fieldset>
-		<input type="button" value="トークン発行" onclick="getTokens();">
+		<input type="button" value="トークン発行" onclick="getTokens(this);">
 		<input type="button" value="キャッシュ削除" onclick="if(window.confirm('キャッシュデータ削除しますか？\n不具合が発生している場合のみお試しください。')){localStorage.clear();sessionStorage.clear();location.reload();}">
 	</form>
 </body>
