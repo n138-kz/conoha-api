@@ -81,20 +81,6 @@
 				} catch (error) {}
 
 			}
-
-			let list = ['username','password','tenantId',];
-			for (let i=0; i<list.length; i++) {
-				if(false
-					||credentials[list[i]] === null
-					||credentials[list[i]] === undefined
-					||credentials[list[i]] === ''
-				){
-					credentials[list[i]] = '';
-				}
-				try {
-					document.querySelector('form fieldset input#'+list[i]).value = atob(credentials[list[i]]);
-				} catch (error) {}
-			}
 		});
 		function localcache_init() {
 			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
