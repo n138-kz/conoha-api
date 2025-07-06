@@ -27,6 +27,12 @@
 		});
 	</script>
 	<style>
+		.mosaic {
+			filter: blur(3px);
+		}
+		.mosaic_strong {
+			filter: blur(10px);
+		}
 		form fieldset input {
 			width: stretch;
 		}
@@ -145,6 +151,12 @@
 					dom.innerHTML += ' -H \'Accept: application/json\''
 					dom.innerHTML += ' -H \'Content-Type: application/json;charset=utf-8\''
 					dom.innerHTML += ' -H \'Access-Control-Allow-Origin: *\''
+					dom.innerHTML += ' -d \''
+					+ external_api.data
+					.replace(atob(credentials.username), `<span class="mosaic">${atob(credentials.username)}</span>`)
+					.replace(atob(credentials.tenantId), `<span class="mosaic">${atob(credentials.tenantId)}</span>`)
+					.replace(atob(credentials.password), `<span class="mosaic_strong">${atob(credentials.password)}</span>`)
+					+ '\''
 					dom.innerHTML += ` ${external_api.endpoint}`;
 					dom.innerHTML += ');';
 					dom.innerHTML += 'conoha_auth_token=$(';
