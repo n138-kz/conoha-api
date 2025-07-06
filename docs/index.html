@@ -68,7 +68,7 @@
 			}
 			credentials = JSON.parse(credentials);
 
-			let list = ['username','password','tenantId','token',];
+			let list = ['username','password','tenantId',];
 			for (let i=0; i<list.length; i++) {
 				if(false
 					||credentials[list[i]] === null
@@ -89,7 +89,7 @@
 				||credentials === undefined
 				||credentials === ''
 			){
-				credentials = {username:null,password:null,tenantId:null,};
+				credentials = {username:null,password:null,tenantId:null,token:null,};
 				localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 			}
 		}
