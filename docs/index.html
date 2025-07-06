@@ -180,6 +180,10 @@
 							callbyButton.value='▲';
 						}
 					}, 600);
+				} else if(e.tagName.toLowerCase()=='a'){
+					if (e.name!='') {
+						location.replace(`#${e.name}`)
+					}
 				}
 			});
 		}
