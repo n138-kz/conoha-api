@@ -30,14 +30,14 @@
 					ec.target.select();
 				});
 				ep.addEventListener('change', (ec)=>{
-					let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+					let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 					credentials = JSON.parse(credentials);
 					credentials[ec.target.id] = btoa(ec.target.value);
-					sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
+					localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 				});
 			});
 
-			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 			if(false
 				||credentials === null
 				||credentials === undefined
@@ -60,20 +60,20 @@
 			}
 		});
 		function localcache_init() {
-			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 			if(false
 				||credentials === null
 				||credentials === undefined
 				||credentials === ''
 			){
 				credentials = {username:null,password:null,tenantId:null,};
-				sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
+				localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 			}
 		}
 		async function getTokens(button) {
 			button.disabled = true;
 
-			let credentials = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 			if(false
 				||credentials === null
 				||credentials === undefined
