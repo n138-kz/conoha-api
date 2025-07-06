@@ -105,9 +105,7 @@
 						discord.users_me = res.users_me;
 						localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'oauth2_token', JSON.stringify(res.oauth2_token) );
 						sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(res.users_me) );
-					}catch(e){
-						console.error(e);
-					}
+					}catch(e){ console.error(e); }
 					location.replace( location.origin + location.pathname + '?' + 'access_token=' + discord.oauth2_token.access_token );
 				} else if ( query_list.access_token !== '' ) {
 				}
