@@ -212,7 +212,7 @@
 			<li><a href="#">compute-ope_vm-v2: os-stop</a></li>
 			<li><a href="#">compute-ope_vm-v2: os-stop-force_shutdown</a></li>
 			<li><a href="#">compute-ope_vm-v2: os-start</a></li>
-			<li><a href="#">compute-iso-download-add-v2</a></li>
+			<li><a href="#isoImages">compute-iso-download-add-v2</a></li>
 			<li><a href="#">compute-iso-list-show-v2</a></li>
 			<li><a href="#">compute-insert_iso_image-v2</a></li>
 			<li><a href="#">compute-eject_iso_image-v2</a></li>
@@ -236,6 +236,18 @@
 		<input type="button" value="▲" onclick="toggle([this, 'fieldset'])">
 		<input type="button" value="トークン発行" onclick="getTokens(this);">
 		<input type="button" value="キャッシュ削除" onclick="if(window.confirm('キャッシュデータ削除しますか？\n不具合が発生している場合のみお試しください。')){localStorage.clear();sessionStorage.clear();location.reload();}">
+	</form>
+	<form action="" method="post">
+		<a name="isoImages"></a>
+		<fieldset style="display: none;">
+			<legend>compute-iso-download-add-v2</legend>
+			<fieldset>
+				<legend>iso-image URL</legend>
+				<input type="url">
+			</fieldset>
+		</fieldset>
+		<input type="button" value="▷" onclick="" disabled>
+		<input type="button" value="▽" onclick="toggle([this, 'fieldset'])">
 	</form>
 </body>
 </html>
