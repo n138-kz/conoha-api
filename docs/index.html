@@ -167,6 +167,18 @@
 			
 			button.disabled = false;
 		}
+		function toggle(target) {
+			target[0] = target[0].parentNode;
+			Array.from(target[0].children).map(e=>{
+				if(e.tagName.toLowerCase()==target[1]){
+					$(e).fadeToggle(500);
+					setTimeout(() => {
+						console.log(e.getBoundingClientRect());
+						console.log(e.getBoundingClientRect()['height']);
+					}, 800);
+				}
+			});
+		}
 	</script>
 </head>
 <body>
@@ -183,6 +195,7 @@
 			<legend>tenant-id</legend>
 			<input type="text" id="tenantId">
 		</fieldset>
+		<input type="button" value="▲" onclick="toggle([this, 'fieldset'])">
 		<input type="button" value="トークン発行" onclick="getTokens(this);">
 		<input type="button" value="キャッシュ削除" onclick="if(window.confirm('キャッシュデータ削除しますか？\n不具合が発生している場合のみお試しください。')){localStorage.clear();sessionStorage.clear();location.reload();}">
 	</form>
