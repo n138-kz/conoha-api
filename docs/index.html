@@ -127,6 +127,28 @@
 						res = await req.json();
 						sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(res) );
 
+						Object.assign({
+							accent_color: null,
+							avatar: null,
+							avatar_decoration_data: null,
+							banner: null,
+							banner_color: null,
+							clan: null,
+							collectibles: null,
+							discriminator: null,
+							email: null,
+							flags: null,
+							global_name: null,
+							id: null,
+							locale: null,
+							mfa_enabled: null,
+							premium_type: null,
+							primary_guild: null,
+							public_flags: null,
+							username: null,
+							verified: null,
+						}, res);
+
 						// set login status
 						discord_userinfo = {};
 						discord_userinfo.name = ( discord.users_me.global_name === '' || discord.users_me.global_name === null || discord.users_me.global_name === undefined ) ? discord.users_me.username : discord.users_me.global_name;
