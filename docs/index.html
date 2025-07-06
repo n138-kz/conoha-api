@@ -127,9 +127,8 @@
 				console.error('Error:', th.message, th.stack);
 				let dom = document.createElement('div');
 				dom.innerText = `Error: ${th.message}`;
-				dom.style.fontSize = 'small';
-				dom.style.backgroundColor = '#ffa500';
-				dom.style.width = 'stretch';
+				dom.classList.add('message');
+				dom.classList.add('warning');
 				document.querySelectorAll('form')[0].appendChild(dom);
 			}
 			
