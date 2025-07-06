@@ -123,37 +123,6 @@
 				{
 					let dom = document.createElement('div');
 					dom.innerText = '';
-					dom.innerText += 'curl';
-					dom.innerText += ' -s';
-					dom.innerText += ' -X POST';
-					dom.innerText += ' -H \'Accept: application/json\'';
-					dom.innerText += ' -H \'Content-Type: application/json;charset=utf-8\'';
-					dom.innerText += ' -H \'Access-Control-Allow-Origin: *\'';
-					dom.innerText += ' -d \'' + external_api.data + '\'';
-					dom.innerText += ` ${external_api.endpoint}`;
-					dom.classList.add('message');
-					dom.classList.add('command');
-					document.querySelectorAll('form')[0].appendChild(dom);
-				}
-				{
-					let dom = document.createElement('div');
-					dom.innerText = '';
-					dom.innerText += 'curl';
-					dom.innerText += ' -s';
-					dom.innerText += ' -X POST';
-					dom.innerText += ' -H \'Accept: application/json\''
-					dom.innerText += ' -H \'Content-Type: application/json;charset=utf-8\'';
-					dom.innerText += ' -H \'Access-Control-Allow-Origin: *\'';
-					dom.innerText += ' -d \'' + external_api.data + '\'';
-					dom.innerText += ` ${external_api.endpoint}`;
-					dom.innerText += ' | jq -r .access.token.id';
-					dom.classList.add('message');
-					dom.classList.add('command');
-					document.querySelectorAll('form')[0].appendChild(dom);
-				}
-				{
-					let dom = document.createElement('div');
-					dom.innerText = '';
 					dom.innerText += 'conoha_client_token=$('
 					dom.innerText += 'curl'
 					dom.innerText += ' -s'
