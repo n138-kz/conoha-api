@@ -399,7 +399,7 @@
 				if (false) {
 				} else if (button.parentNode.name == '') {
 					external_api.endpoint = '';
-					external_api.method = 'POST';
+					external_api.method = 'GET';
 					external_api.data = {};
 				} else if (button.parentNode.name == 'isoImages') {
 					external_api.endpoint = `https://compute.tyo1.conoha.io/v2/${atob(credentials.tenantId)}/iso-images`;
