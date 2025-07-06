@@ -50,6 +50,30 @@
 		}
 	</style>
 	<script>
+		function toggle(target) {
+			callbyButton = target[0];
+			callbyButton.disabled = true;
+			target[0] = target[0].parentNode;
+			Array.from(target[0].children).map(e=>{
+				if(e.tagName.toLowerCase()==target[1]){
+					$(e).fadeToggle(500);
+					setTimeout(() => {
+						if(e.getBoundingClientRect()['height']==0){
+							callbyButton.value='▽';
+						} else {
+							callbyButton.value='▲';
+						}
+						callbyButton.disabled = false;
+					}, 600);
+				} else if(e.tagName.toLowerCase()=='a'){
+					if (e.name!='') {
+						location.replace(`#${e.name}`)
+					}
+				}
+			});
+		}
+	</script>
+	<script>
 		window.addEventListener('DOMContentLoaded', async ()=>{
 			let query_list = get_GETarray((decodeURI(location.search)+'&').replace(/^\?/,''));
 			query_list.code = ( query_list.code === "" || query_list.code === null || query_list.code === undefined )?'':query_list.code;
@@ -234,28 +258,6 @@
 			}
 			
 			button.disabled = false;
-		}
-		function toggle(target) {
-			callbyButton = target[0];
-			callbyButton.disabled = true;
-			target[0] = target[0].parentNode;
-			Array.from(target[0].children).map(e=>{
-				if(e.tagName.toLowerCase()==target[1]){
-					$(e).fadeToggle(500);
-					setTimeout(() => {
-						if(e.getBoundingClientRect()['height']==0){
-							callbyButton.value='▽';
-						} else {
-							callbyButton.value='▲';
-						}
-						callbyButton.disabled = false;
-					}, 600);
-				} else if(e.tagName.toLowerCase()=='a'){
-					if (e.name!='') {
-						location.replace(`#${e.name}`)
-					}
-				}
-			});
 		}
 	</script>
 </head>
