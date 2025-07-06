@@ -20,10 +20,9 @@
 	<script src="https://n138-kz.github.io/lib/grecaptcha.js"></script>
 	<script>
 		window.addEventListener('DOMContentLoaded', ()=>{
-			let ref = document.createElement('meta');
-			ref['http-equiv'] = 'refresh';
-			ref['content'] = `300;${location.origin}${location.pathname}?t=${new Date().getTime()/1000}${location.hash}`;
-			document.head.appendChild(ref);
+			setTimeout(() => {
+				location.replace(`${location.origin}${location.pathname}?t=${new Date().getTime()/10**3}${location.hash}`)
+			}, 300*10**3);
 		});
 	</script>
 	<style>
