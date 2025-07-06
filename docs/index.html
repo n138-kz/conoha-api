@@ -423,8 +423,7 @@
 		<input type="button" value="トークン発行" onclick="getTokens(this);">
 		<input type="button" value="キャッシュ削除" onclick="if(window.confirm('キャッシュデータ削除しますか？\n不具合が発生している場合のみお試しください。')){localStorage.clear();sessionStorage.clear();location.reload();}">
 	</form>
-	<form action="" method="post">
-		<a name="isoImages"></a>
+	<form action="" method="post" name="isoImages">
 		<fieldset style="display: none;">
 			<legend>compute-iso-download-add-v2</legend>
 			<fieldset>
@@ -434,6 +433,7 @@
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
 		<input type="button" value="▽" onclick="toggle([this, 'fieldset'])">
+		<input type="button" value="実行" onclick="">
 	</form>
 </body>
 </html>
