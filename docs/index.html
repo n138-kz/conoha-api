@@ -371,6 +371,91 @@
 			
 			button.disabled = false;
 		}
+		async function exec(button) {
+			button.disabled = true;
+
+			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+			if(false
+				||credentials === null
+				||credentials === undefined
+				||credentials === ''
+			){
+				localcache_init();
+			}
+			credentials = JSON.parse(credentials);
+
+			for(const [k,v] of Object.entries(credentials)){
+				if(false
+					||credentials[k] === null
+					||credentials[k] === undefined
+					||credentials[k] === ''
+				){
+					credentials[k] = '';
+				}
+			}
+
+			try {
+				let external_api = {};
+				if (false) {
+				} else if (button.parentNode.name == '') {
+					external_api.endpoint = '';
+					external_api.data = {};
+				} else if (button.parentNode.name == 'isoImages') {
+					external_api.endpoint = `https://compute.tyo1.conoha.io/v2/${atob(credentials.tenantId)}/iso-images`;
+					external_api.data = {
+						"iso-image": {
+							url: document.querySelector(`form[name="${button.parentNode.name}"] input[type="url"]`).value,
+						},
+					};
+				}
+				external_api.data = JSON.stringify(external_api.data);
+				{
+					let dom = document.createElement('div');
+					dom.innerHTML = '';
+					dom.innerHTML += '#!/bin/bash<br>'
+					dom.innerHTML += 'curl'
+					dom.innerHTML += ' -s'
+					dom.innerHTML += ' -X POST'
+					dom.innerHTML += ` -H 'Accept: application/json'`
+					dom.innerHTML += ` -H 'Content-Type: application/json;charset=utf-8'`
+					dom.innerHTML += ` -H 'Access-Control-Allow-Origin: *'`
+					dom.innerHTML += ` -H "X-Auth-Token: \${conoha_auth_token}"`
+					dom.innerHTML += ` -d '${external_api.data}'`
+					dom.innerHTML += ` ${external_api.endpoint}`;
+					dom.innerHTML += ` | jq`;
+					dom.innerHTML = dom.innerHTML
+					.replace(atob(credentials.username), `<span class="mosaic">${atob(credentials.username)}</span>`)
+					.replace(atob(credentials.tenantId), `<span class="mosaic">${atob(credentials.tenantId)}</span>`)
+					.replace(atob(credentials.password), `<span class="mosaic_strong">${atob(credentials.password)}</span>`)
+					dom.classList.add('message');
+					dom.classList.add('command');
+					button.parentNode.appendChild(dom);
+				}
+				let req = await fetch(external_api.endpoint, {
+					method: 'POST',
+					mode: 'cors',
+					headers: {
+						Accept: 'application/json',
+						"Content-Type": "application/json;charset=utf-8",
+						"Access-Control-Allow-Origin": '*',
+					},
+					body: external_api.data,
+				});
+				console.log(req.ok);
+				
+				let res = await req.json();
+
+			} catch (th) {
+				console.error('Error:', th.message, th.stack);
+				let dom = document.createElement('div');
+				dom.innerText = `Error: ${th.message}`;
+				dom.classList.add('message');
+				dom.classList.add('warning');
+				button.parentNode.appendChild(dom);
+			}
+			
+			button.disabled = false;
+		}
 	</script>
 </head>
 <body>
@@ -433,7 +518,7 @@
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
 		<input type="button" value="▽" onclick="toggle([this, 'fieldset'])">
-		<input type="button" value="実行" onclick="">
+		<input type="button" value="実行" onclick="exec(this)">
 	</form>
 	<form action="" method="post" name="">
 		<fieldset style="display: none;">
