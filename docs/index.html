@@ -125,7 +125,7 @@
 						res = await req.json();
 						sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(res) );
 
-						Object.assign({
+						discord.users_me = Object.assign({
 							accent_color: null,
 							avatar: null,
 							avatar_decoration_data: null,
