@@ -94,7 +94,7 @@
 	</script>
 	<script>
 		window.addEventListener('DOMContentLoaded', ()=>{
-			Array.from(document.querySelectorAll('form fieldset input')).map((ep)=>{
+			Array.from(document.querySelectorAll('form[name="token"] fieldset input')).map((ep)=>{
 				ep.addEventListener('click', (ec)=>{
 					ec.target.select();
 				});
@@ -286,8 +286,7 @@
 			</fieldset>
 		</fieldset>
 	</form>
-	<form action="" method="post">
-		<a name="token"></a>
+	<form action="" name="token" method="post">
 		<fieldset>
 			<legend>v2.0/tokens</legend>
 			<fieldset>
