@@ -174,7 +174,6 @@
 				if(e.tagName.toLowerCase()==target[1]){
 					$(e).fadeToggle(500);
 					setTimeout(() => {
-						console.log(e.getBoundingClientRect());
 						if(e.getBoundingClientRect()['height']==0){
 							callbyButton.value='▽';
 						} else {
