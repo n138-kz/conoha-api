@@ -21,7 +21,12 @@
 	<script>
 		window.addEventListener('DOMContentLoaded', ()=>{
 			setTimeout(() => {
-				location.replace(`${location.origin}${location.pathname}?t=${new Date().getTime()/10**3}${location.hash}`)
+				let oauth2_token = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'oauth2_token' );
+				oauth2_token = ( oauth2_token === "" || oauth2_token === null || oauth2_token === undefined )?[]:JSON.parse(oauth2_token);
+				i=access_token;
+				oauth2_token = ( oauth2_token[i] === "" || oauth2_token[i] === null || oauth2_token[i] === undefined )?'':oauth2_token[i];
+
+				location.replace(`${location.origin}${location.pathname}?t=${new Date().getTime()/10**3}${location.hash}&access_token=${oauth2_token}`);
 			}, 300*10**3);
 		});
 	</script>
