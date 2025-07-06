@@ -51,6 +51,49 @@
 		}
 	</style>
 	<script>
+		window.addEventListener('DOMContentLoaded', async ()=>{
+			let query_list = get_GETarray((decodeURI(location.search)+'&').replace(/^\?/,''));
+			query_list.code = ( query_list.code === "" || query_list.code === null || query_list.code === undefined )?'':query_list.code;
+			query_list.access_token = ( query_list.access_token === "" || query_list.access_token === null || query_list.access_token === undefined )?'':query_list.access_token;
+			query_list.error = ( query_list.error === "" || query_list.error === null || query_list.error === undefined )?'':query_list.error;
+			query_list.error_description = ( query_list.error_description === "" || query_list.error_description === null || query_list.error_description === undefined )?'':decodeURIComponent(query_list.error_description.replace(/\+/g,'%20'));
+			console.debug(query_list);
+
+			if ( query_list.error !== '' || query_list.error_description !== '' ) {
+			} else {
+				let discord = {};
+				discord.oauth2_token = null;
+				discord.users_me = null;
+				discord.users_me_guilds = null;
+				if ( query_list.code !== '' ) {
+						try{
+							// get access_token
+							url = 'https://api.n138.jp/sso_discord/server/token.php?&redirect_url=https://n138-kz.github.io/conoha-api/&code='+query_list.code;
+							req = await fetch(url, {
+								cache: 'no-store',
+							});
+							if(req.status>299||req.status<200){
+								throw `${req.statusText}(${req.status})`;
+							}
+							res = await req.json();
+							res.oauth2_token.expires_at = new Date((Date.now()/10**3+res.oauth2_token.expires_in)*10**3);
+							console.debug({url:url,req:req,res:res});
+							discord.oauth2_token = res.oauth2_token;
+							discord.users_me = res.users_me;
+							localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'oauth2_token', JSON.stringify(res.oauth2_token) );
+							sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'oauth2_token', JSON.stringify(res.oauth2_token) );
+							sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(res.users_me) );
+						}catch(e){
+							console.error(e);
+						}
+						location.replace( location.origin + location.pathname + '?' + 'access_token=' + discord.oauth2_token.access_token );
+
+				} else if ( query_list.access_token !== '' ) {
+				}
+			}
+		});
+	</script>
+	<script>
 		window.addEventListener('DOMContentLoaded', ()=>{
 			Array.from(document.querySelectorAll('form fieldset input')).map((ep)=>{
 				ep.addEventListener('click', (ec)=>{
