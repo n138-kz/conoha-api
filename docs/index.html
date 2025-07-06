@@ -399,9 +399,11 @@
 				if (false) {
 				} else if (button.parentNode.name == '') {
 					external_api.endpoint = '';
+					external_api.method = 'POST';
 					external_api.data = {};
 				} else if (button.parentNode.name == 'isoImages') {
 					external_api.endpoint = `https://compute.tyo1.conoha.io/v2/${atob(credentials.tenantId)}/iso-images`;
+					external_api.method = 'POST';
 					external_api.data = {
 						"iso-image": {
 							url: document.querySelector(`form[name="${button.parentNode.name}"] input[type="url"]`).value,
@@ -415,7 +417,7 @@
 					dom.innerHTML += '#!/bin/bash<br>'
 					dom.innerHTML += 'curl'
 					dom.innerHTML += ' -s'
-					dom.innerHTML += ' -X POST'
+					dom.innerHTML += ` -X ${external_api.method}`
 					dom.innerHTML += ` -H 'Accept: application/json'`
 					dom.innerHTML += ` -H 'Content-Type: application/json;charset=utf-8'`
 					dom.innerHTML += ` -H 'Access-Control-Allow-Origin: *'`
