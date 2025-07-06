@@ -131,6 +131,7 @@
 					dom.innerText += ' -d \'' + external_api.data + '\''
 					dom.innerText += ` ${external_api.endpoint}`;
 					dom.classList.add('message');
+					dom.classList.add('command');
 					document.querySelectorAll('form')[0].appendChild(dom);
 				}
 				let req = await fetch(external_api.endpoint, {
