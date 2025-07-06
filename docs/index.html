@@ -136,22 +136,22 @@
 				external_api.data = JSON.stringify(external_api.data);
 				{
 					let dom = document.createElement('div');
-					dom.innerText = '';
-					dom.innerText += 'conoha_client_token=$('
-					dom.innerText += 'curl'
-					dom.innerText += ' -s'
-					dom.innerText += ' -X POST'
-					dom.innerText += ' -H \'Accept: application/json\''
-					dom.innerText += ' -H \'Content-Type: application/json;charset=utf-8\''
-					dom.innerText += ' -H \'Access-Control-Allow-Origin: *\''
-					dom.innerText += ' -d \'' + external_api.data + '\''
-					dom.innerText += ` ${external_api.endpoint}`;
-					dom.innerText += ');';
-					dom.innerText += 'conoha_auth_token=$(';
-					dom.innerText += ' echo ${conoha_client_token}';
-					dom.innerText += ' | jq -r .access.token.id';
-					dom.innerText += ');';
-					dom.innerText += 'echo -e "\\e[32m${conoha_auth_token}\\e[m"';
+					dom.innerHTML = '';
+					dom.innerHTML += '#!/bin/bash<br>'
+					dom.innerHTML += 'conoha_client_token=$('
+					dom.innerHTML += 'curl'
+					dom.innerHTML += ' -s'
+					dom.innerHTML += ' -X POST'
+					dom.innerHTML += ' -H \'Accept: application/json\''
+					dom.innerHTML += ' -H \'Content-Type: application/json;charset=utf-8\''
+					dom.innerHTML += ' -H \'Access-Control-Allow-Origin: *\''
+					dom.innerHTML += ` ${external_api.endpoint}`;
+					dom.innerHTML += ');';
+					dom.innerHTML += 'conoha_auth_token=$(';
+					dom.innerHTML += ' echo ${conoha_client_token}';
+					dom.innerHTML += ' | jq -r .access.token.id';
+					dom.innerHTML += ');';
+					dom.innerHTML += 'echo -e "\\e[32m${conoha_auth_token}\\e[m"';
 					dom.classList.add('message');
 					dom.classList.add('command');
 					button.parentNode.appendChild(dom);
