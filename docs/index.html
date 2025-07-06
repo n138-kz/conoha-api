@@ -168,6 +168,7 @@
 					dom.innerText += ' echo ${conoha_client_token}';
 					dom.innerText += ' | jq -r .access.token.id';
 					dom.innerText += ');';
+					dom.innerText += 'echo -e "\\e[32m${conoha_client_token}\\e[m"';
 					dom.classList.add('message');
 					dom.classList.add('command');
 					document.querySelectorAll('form')[0].appendChild(dom);
