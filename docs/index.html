@@ -18,6 +18,14 @@
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
 	<script src="https://www.google.com/recaptcha/api.js?render=6LfCHdcUAAAAAOwkHsW_7W7MfoOrvoIw9CXdLRBA"></script>
 	<script src="https://n138-kz.github.io/lib/grecaptcha.js"></script>
+	<script>
+		window.addEventListener('DOMContentLoaded', ()=>{
+			let ref = document.createElement('meta');
+			ref['http-equiv'] = 'refresh';
+			ref['content'] = `300;${location.origin}${location.pathname}?t=${new Date().getTime()/1000}${location.hash}`;
+			document.head.appendChild(ref);
+		});
+	</script>
 	<style>
 		form fieldset input {
 			width: stretch;
