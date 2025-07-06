@@ -409,6 +409,9 @@
 							url: document.querySelector(`form[name="${button.parentNode.name}"] input[type="url"]`).value,
 						},
 					};
+				} else if (button.parentNode.name == 'isoImages_list') {
+					external_api.endpoint = '';
+					external_api.method = 'GET';
 				}
 				external_api.data = JSON.stringify(external_api.data);
 				{
@@ -422,7 +425,7 @@
 					dom.innerHTML += ` -H 'Content-Type: application/json;charset=utf-8'`
 					dom.innerHTML += ` -H 'Access-Control-Allow-Origin: *'`
 					dom.innerHTML += ` -H "X-Auth-Token: \${conoha_auth_token}"`
-					dom.innerHTML += ` -d '${external_api.data}'`
+					dom.innerHTML += (external_api.method == 'POST')?` -d '${external_api.data}'`:''
 					dom.innerHTML += ` ${external_api.endpoint}`;
 					dom.innerHTML += ` | jq`;
 					dom.innerHTML = dom.innerHTML
@@ -473,7 +476,7 @@
 			<li><a href="#">compute-ope_vm-v2: os-stop-force_shutdown</a></li>
 			<li><a href="#">compute-ope_vm-v2: os-start</a></li>
 			<li><a href="#isoImages">compute-iso-download-add-v2</a></li>
-			<li><a href="#">compute-iso-list-show-v2</a></li>
+			<li><a href="#isoImages_list">compute-iso-list-show-v2</a></li>
 			<li><a href="#">compute-insert_iso_image-v2</a></li>
 			<li><a href="#">compute-eject_iso_image-v2</a></li>
 		</ul>
@@ -522,12 +525,9 @@
 		<input type="button" value="▽" onclick="toggle([this, 'fieldset'])">
 		<input type="button" value="実行" onclick="exec(this)">
 	</form>
-	<form action="" method="post" name="">
+	<form action="" method="post" name="isoImages_list">
 		<fieldset style="display: none;">
-			<legend></legend>
-			<fieldset>
-				<legend></legend>
-			</fieldset>
+			<legend>compute-iso-list-show-v2</legend>
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
 		<input type="button" value="▽" onclick="toggle([this, 'fieldset'])">
