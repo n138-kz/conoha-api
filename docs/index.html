@@ -437,12 +437,13 @@
 					button.parentNode.appendChild(dom);
 				}
 				let req = await fetch(external_api.endpoint, {
-					method: 'POST',
+					method: external_api.method,
 					mode: 'cors',
 					headers: {
 						Accept: 'application/json',
 						"Content-Type": "application/json;charset=utf-8",
 						"Access-Control-Allow-Origin": '*',
+						"X-Auth-Token": '',
 					},
 					body: external_api.data,
 				});
