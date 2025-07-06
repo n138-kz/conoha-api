@@ -113,10 +113,10 @@
 				external_api.data = {
 					auth: {
 						passwordCredentials: {
-							username: credentials.username,
-							password: credentials.password,
+							username: atob(credentials.username),
+							password: atob(credentials.password),
 						},
-						tenantId: credentials.tenantId,
+						tenantId: atob(credentials.tenantId),
 					},
 				};
 				external_api.data = JSON.stringify(external_api.data);
