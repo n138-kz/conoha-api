@@ -109,6 +109,27 @@
 
 					location.replace( location.origin + location.pathname + '?' + 'access_token=' + discord.oauth2_token.access_token );
 				} else if ( query_list.access_token !== '' ) {
+					try {
+						// get access_token
+						url = 'https://discordapp.com/api/users/@me';
+						req = await fetch(url, {
+							headers: {
+								Authorization: 'Bearer '+query_list.access_token,
+							},
+							cache: 'no-store',
+						});
+						if(req.status>299||req.status<200){
+							throw `${req.statusText}(${req.status})`;
+						}
+						res = await req.json();
+						sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(res) );
+						
+					}catch(e){
+						console.error(e);
+						setTimeout(()=>{
+							location.replace(location.origin+location.pathname);
+						}, 1000*5);
+					}
 				}
 			}
 		});
