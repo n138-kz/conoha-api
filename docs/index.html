@@ -89,7 +89,7 @@
 				||credentials === undefined
 				||credentials === ''
 			){
-				credentials = {username:null,password:null,tenantId:null,token:null,};
+				credentials = {username:null,password:null,tenantId:null,};
 				localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 			}
 		}
