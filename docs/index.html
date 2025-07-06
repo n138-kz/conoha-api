@@ -410,7 +410,7 @@
 						},
 					};
 				} else if (button.parentNode.name == 'isoImages_list') {
-					external_api.endpoint = '';
+					external_api.endpoint = `https://compute.tyo1.conoha.io/v2/${atob(credentials.tenantId)}/iso-images`;
 					external_api.method = 'GET';
 				}
 				external_api.data = JSON.stringify(external_api.data);
