@@ -37,7 +37,7 @@
 		}
 	</style>
 	<script>
-		window.addEventListener('DOMContentLoaded', async ()=>{
+		window.addEventListener('DOMContentLoaded', ()=>{
 			Array.from(document.querySelectorAll('form fieldset input')).map((ep)=>{
 				ep.addEventListener('click', (ec)=>{
 					ec.target.select();
@@ -69,7 +69,9 @@
 				){
 					credentials[list[i]] = '';
 				}
-				document.querySelector('form fieldset input#'+list[i]).value = atob(credentials[list[i]]);
+				try {
+					document.querySelector('form fieldset input#'+list[i]).value = atob(credentials[list[i]]);
+				} catch (error) {}
 			}
 		});
 		function localcache_init() {
