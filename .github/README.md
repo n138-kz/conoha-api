@@ -20,6 +20,9 @@
 
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)conoha-vm](https://github.com/n138-kz/conoha-vm/)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)conoha-api](https://github.com/n138-kz/conoha-api/)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)sso_discord](https://github.com/n138-kz/sso_discord/)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Developer Console](https://discord.com/developers/applications)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://discord.com)Discord公式リファレンス](https://discord.com/developers/docs/topics/oauth2)
 
 ## Github RestAPI
 
