@@ -68,6 +68,20 @@
 			}
 			credentials = JSON.parse(credentials);
 
+			for(const [k,v] of Object.entries(credentials)){
+				if(false
+					||credentials[k] === null
+					||credentials[k] === undefined
+					||credentials[k] === ''
+				){
+					credentials[k] = '';
+				}
+				try {
+					document.querySelector('form fieldset input#'+k).value = atob(credentials[k]);
+				} catch (error) {}
+
+			}
+
 			let list = ['username','password','tenantId',];
 			for (let i=0; i<list.length; i++) {
 				if(false
