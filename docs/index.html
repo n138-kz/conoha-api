@@ -87,7 +87,6 @@
 				let discord = {};
 				discord.oauth2_token = null;
 				discord.users_me = null;
-				discord.users_me_guilds = null;
 				if ( query_list.code !== '' ) {
 					try{
 						// get access_token
@@ -110,7 +109,6 @@
 						console.error(e);
 						location.replace( location.origin + location.pathname );
 					}
-
 				} else if ( query_list.access_token !== '' ) {
 					try {
 						// get access_token
