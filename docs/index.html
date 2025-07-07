@@ -248,14 +248,14 @@
 				ep.addEventListener('change', (ec)=>{
 					let history = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'history');
 					history = (false
-						||credentials === null
-						||credentials === undefined
-						||credentials === ''
+						||history === null
+						||history === undefined
+						||history === ''
 					) ? {} : JSON.parse(history);
 					history[ec.target.dataset.historyId] = (false
-						||credentials === null
-						||credentials === undefined
-						||credentials === ''
+						||history === null
+						||history === undefined
+						||history === ''
 					) ? [] : history[ec.target.dataset.historyId];
 					history[ec.target.dataset.historyId].push(ec.target.value);
 					sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'history', JSON.stringify(history) );
