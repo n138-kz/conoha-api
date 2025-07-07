@@ -308,7 +308,7 @@
 					||history[d] === ''
 				) ? [] : history[d];
 				try {
-					document.querySelector('form.compute fieldset input[type="url"]').value = history[d][history[d].length-1];
+					document.querySelector(`form.compute fieldset input[type="url"][data-history-id="${d}"]`).value = (history[d].length>0) ? history[d][history[d].length-1] : '';
 				} catch (error) {console.warn(error);}
 			}
 		});
