@@ -246,7 +246,7 @@
 					ec.target.select();
 				});
 				ep.addEventListener('blur', (ec)=>{
-					let history = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'history');
+					let history = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'history');
 					history = (false
 						||history === null
 						||history === undefined
