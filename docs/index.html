@@ -262,18 +262,18 @@
 				});
 			});
 
-			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
-			if(false
-				||credentials === null
-				||credentials === undefined
-				||credentials === ''
-			){
-				localcache_init();
-			}
-			credentials = JSON.parse(credentials);
-
 			{
 				// credentials
+				let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
+				if(false
+					||credentials === null
+					||credentials === undefined
+					||credentials === ''
+				){
+					localcache_init();
+				}
+				credentials = JSON.parse(credentials);
+
 				let b = true;
 				for(const [k,v] of Object.entries(credentials)){
 					if(false
