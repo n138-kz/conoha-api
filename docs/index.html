@@ -286,7 +286,7 @@
 					}
 					try {
 						document.querySelector('form[name="token"] fieldset input#'+k).value = atob(credentials[k]);
-					} catch (error) {console.warn(error);
+					} catch (error) {console.warn(error);}
 				}
 				if (b) {
 					document.querySelector('input[value="トークン発行"]').previousElementSibling.click()
@@ -309,8 +309,7 @@
 				) ? [] : history[d];
 				try {
 					document.querySelector('form.compute fieldset input[type="url"]').value = history[d][history[d].length-1];
-				} catch (error) {console.warn(error);
-				}
+				} catch (error) {console.warn(error);}
 			}
 		});
 		function localcache_init() {
