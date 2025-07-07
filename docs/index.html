@@ -272,27 +272,28 @@
 			}
 			credentials = JSON.parse(credentials);
 
-			let b;
-			// credentials
-			b = true;
-			for(const [k,v] of Object.entries(credentials)){
-				if(false
-					||credentials[k] === null
-					||credentials[k] === undefined
-					||credentials[k] === ''
-				){
-					credentials[k] = '';
-					b = false;
+			{
+				// credentials
+				let b = true;
+				for(const [k,v] of Object.entries(credentials)){
+					if(false
+						||credentials[k] === null
+						||credentials[k] === undefined
+						||credentials[k] === ''
+					){
+						credentials[k] = '';
+						b = false;
+					}
+					try {
+						document.querySelector('form fieldset input#'+k).value = atob(credentials[k]);
+					} catch (error) {}
 				}
-				try {
-					document.querySelector('form fieldset input#'+k).value = atob(credentials[k]);
-				} catch (error) {}
+				if (b) {
+					document.querySelector('input[value="トークン発行"]').previousElementSibling.click()
+					document.querySelector('input[value="トークン発行"]').click();
+				}
+
 			}
-			if (b) {
-				document.querySelector('input[value="トークン発行"]').previousElementSibling.click()
-				document.querySelector('input[value="トークン発行"]').click();
-			}
-		});
 		function localcache_init() {
 			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 			if(false
