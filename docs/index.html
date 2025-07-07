@@ -285,7 +285,7 @@
 						b = false;
 					}
 					try {
-						document.querySelector('form fieldset input#'+k).value = atob(credentials[k]);
+						document.querySelector('form[name="token"] fieldset input#'+k).value = atob(credentials[k]);
 					} catch (error) {}
 				}
 				if (b) {
