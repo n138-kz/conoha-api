@@ -294,6 +294,25 @@
 				}
 
 			}
+			{
+				// history.isoImages_url
+				let history = sessionStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'history');
+				history = (false
+					||history === null
+					||history === undefined
+					||history === ''
+				) ? {} : JSON.parse(history);
+				let d = 'isoImages_url'
+				history[d] = (false
+					||history[d] === null
+					||history[d] === undefined
+					||history[d] === ''
+				) ? [] : history[d];
+				try {
+					document.querySelector('form.compute fieldset input[type="url"]').value = history[d][history[d].length-1];
+				} catch (error) {console.warn(error);
+				}
+			}
 		});
 		function localcache_init() {
 			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
