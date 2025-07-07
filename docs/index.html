@@ -253,9 +253,9 @@
 						||history === ''
 					) ? {} : JSON.parse(history);
 					history[ec.target.dataset.historyId] = (false
-						||history === null
-						||history === undefined
-						||history === ''
+						||history[ec.target.dataset.historyId] === null
+						||history[ec.target.dataset.historyId] === undefined
+						||history[ec.target.dataset.historyId] === ''
 					) ? [] : history[ec.target.dataset.historyId];
 					history[ec.target.dataset.historyId].push(ec.target.value);
 					sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'history', JSON.stringify(history) );
