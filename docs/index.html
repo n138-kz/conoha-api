@@ -241,6 +241,26 @@
 					localStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials', JSON.stringify(credentials) );
 				});
 			});
+			Array.from(document.querySelectorAll('form.compute fieldset input')).map((ep)=>{
+				ep.addEventListener('click', (ec)=>{
+					ec.target.select();
+				});
+				ep.addEventListener('change', (ec)=>{
+					let history = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'history');
+					history = (false
+						||credentials === null
+						||credentials === undefined
+						||credentials === ''
+					) ? {} : JSON.parse(history);
+					history[ec.target.dataset.historyId] = (false
+						||credentials === null
+						||credentials === undefined
+						||credentials === ''
+					) ? [] : history[ec.target.dataset.historyId];
+					history[ec.target.dataset.historyId].push(ec.target.value);
+					sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'history', JSON.stringify(history) );
+				});
+			});
 
 			let credentials = localStorage.getItem( (btoa(location.href)).slice(0, 16) + '.'+'credentials');
 			if(false
@@ -514,12 +534,12 @@
 		<input type="button" value="トークン発行" onclick="getTokens(this);">
 		<input type="button" value="キャッシュ削除" onclick="if(window.confirm('キャッシュデータ削除しますか？\n不具合が発生している場合のみお試しください。')){localStorage.clear();sessionStorage.clear();location.reload();}">
 	</form>
-	<form action="" method="post" name="isoImages">
+	<form action="" method="post" name="isoImages" class="compute">
 		<fieldset style="display: none;">
 			<legend>compute-iso-download-add-v2</legend>
 			<fieldset>
 				<legend>iso-image URL</legend>
-				<input type="url">
+				<input type="url" data-history-id="isoImages_url">
 			</fieldset>
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
