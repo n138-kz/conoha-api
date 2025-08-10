@@ -23,6 +23,21 @@ if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE'
 	}
 }
 
+class conoha {
+    function __construct ($options=[
+        'username'=>null,
+        'password'=>null,
+        'tenantid'=>null,
+    ]) {
+        foreach($options as $k => $v) {
+            $this->auth[$k] = $v;
+            if (!isset($this->auth[$k]) || strlen($this->auth[$k])==0) {
+                error_log('Unable the Class ' . get_class() . ' Initialize. Reason not set ' . $k);
+                exit(1);
+            }
+        }
+    }
+}
 class discord {
     function __construct ($options=[
         'access_token'=>null,
@@ -63,5 +78,10 @@ class discord {
 
 $discord_api = new discord([
     'access_token'=> $_POST['auth']['discord']['access_token'],
+]);
+$conoha_api = new conoha([
+    'username'=>$_POST['auth']['conoha']['passwordCredentials']['username'],
+    'password'=>$_POST['auth']['conoha']['passwordCredentials']['password'],
+    'tenantid'=>$_POST['auth']['conoha']['tenantId'],
 ]);
 $discord_api->getCurrentUser();
