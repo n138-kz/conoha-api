@@ -23,6 +23,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE'
 	}
 }
 
+class ipinfo {
+    function __construct ($options=[
+        'access_token'=>null,
+    ]) {
+        $this->access_token = $options['access_token'];
+        if (!isset($this->access_token) || strlen($this->access_token)==0) {
+            error_log('Unable the Class ' . get_class() . ' Initialize.');
+            exit(1);
+        }
+    }
+}
 class conoha {
     function __construct ($options=[
         'username'=>null,
