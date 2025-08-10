@@ -79,9 +79,10 @@ class discord {
 $discord_api = new discord([
     'access_token'=> $_POST['auth']['discord']['access_token'],
 ]);
+$discord_user = array_merge(['id'=>null], $discord_api->getCurrentUser());
 $conoha_api = new conoha([
     'username'=>$_POST['auth']['conoha']['passwordCredentials']['username'],
     'password'=>$_POST['auth']['conoha']['passwordCredentials']['password'],
     'tenantid'=>$_POST['auth']['conoha']['tenantId'],
 ]);
-$discord_api->getCurrentUser();
+
