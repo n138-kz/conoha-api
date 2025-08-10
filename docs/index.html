@@ -415,6 +415,9 @@
 				if (false) {
 				} else if (authz['users_me'] == null) {
 				} else {
+					let query_list = get_GETarray((decodeURI(location.search)+'&').replace(/^\?/,''));
+					query_list.access_token = ( query_list.access_token === "" || query_list.access_token === null || query_list.access_token === undefined )?'':query_list.access_token;
+
 					external_api.endpoint = `https://api.n138.jp/conoha-api/server/?q=${external_api.endpoint}`;
 				}
 
