@@ -427,7 +427,7 @@
 					body: external_api.data,
 				});
 				console.log('request.ok?: ', req.ok);
-				console.debug({request:await req.text()});
+				//console.debug({request:await req.text()});
 				
 				let res = await req.json();
 				console.debug({response:res});
