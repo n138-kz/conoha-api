@@ -58,9 +58,9 @@ class discord {
             'Authorization: Bearer ' . $this->access_token,
         ];
         error_log(json_encode([
-            $_SERVER['REMOTE_ADDR'],
             $api_endpoint,
             $api_customHeader,
+            $_SERVER['REMOTE_ADDR'],
         ], JSON_UNESCAPED_SLASHES));
         
         $curl_req = curl_init($api_endpoint);
