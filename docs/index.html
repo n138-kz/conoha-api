@@ -112,7 +112,12 @@
 						discord.oauth2_token = res.oauth2_token;
 						discord.users_me = res.users_me;
 						sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(res.users_me) );
-						location.replace( location.origin + location.pathname + '?' + 'access_token=' + discord.oauth2_token.access_token );
+						location.replace(
+							location.origin + location.pathname
+							+ '?' + `iat=${new Date().getTime()/1000}`
+							+ '&' + `eat=${new Date().getTime()/1000+res.oauth2_token.expires_in}`
+							+ '&' + `access_token=${discord.oauth2_token.access_token}`
+						);
 
 						// set login status
 						discord_userinfo = {};
