@@ -108,4 +108,3 @@ $conoha_api = new conoha([
     'password'=>$_POST['auth']['conoha']['passwordCredentials']['password'],
     'tenantid'=>$_POST['auth']['conoha']['tenantId'],
 ]);
-
