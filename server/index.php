@@ -8,6 +8,9 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Origin, Acce
 header('Server: Hidden');
 header('X-Powered-By: Hidden');
 
+ini_set("display_errors", 1);
+ini_set("error_reporting", E_ALL);
+
 /* Content-Type: form/multipart, application/json 両方に対応 **/
 $_SERVER['CONTENT_TYPE'] = (isset($_SERVER['CONTENT_TYPE']))?$_SERVER['CONTENT_TYPE']:'application/octet-stream';
 if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE']),0,16)=='application/json'){
