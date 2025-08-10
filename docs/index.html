@@ -429,7 +429,7 @@
 				console.log(req.ok);
 				
 				let res = await req.json();
-				console.debug(res);
+				console.debug({request:req,response:res});
 
 			} catch (th) {
 				console.error('Error:', th.message, th.stack);
