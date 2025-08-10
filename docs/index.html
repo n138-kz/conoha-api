@@ -87,6 +87,10 @@
 			query_list.error_description = ( query_list.error_description === "" || query_list.error_description === null || query_list.error_description === undefined )?'':decodeURIComponent(query_list.error_description.replace(/\+/g,'%20'));
 			console.debug(query_list);
 
+			/* Clear authn state **/
+			sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'oauth2_token', JSON.stringify(null) );
+			sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(null) );
+
 			if ( query_list.error !== '' || query_list.error_description !== '' ) {
 			} else {
 				let discord = {};
