@@ -92,6 +92,11 @@ $discord_api = new discord([
 ]);
 if (!(array_merge(['id'=>null], $discord_api->getCurrentUser())['id'])) {
     http_response_code(401);
+    error_log(json_encode([
+        'httpcode'=>401,
+        'description'=>'Unauthorized',
+        'remoteaddr'=>$_SERVER['REMOTE_ADDR'],
+    ]));
     echo json_encode([
         'httpcode'=>401,
         'description'=>'Unauthorized',
