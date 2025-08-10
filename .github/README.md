@@ -15,6 +15,8 @@
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/n138-kz/conoha-api)](/../../pulls)
 [![GitHub language count](https://img.shields.io/github/languages/count/n138-kz/conoha-api)](/../../)
 [![GitHub top language](https://img.shields.io/github/languages/top/n138-kz/conoha-api)](/../../)
+[![GitHub Extra Pins](https://github-readme-stats.vercel.app/api/pin/?locale=ja&show_owner=true&theme=graywhite&username=n138-kz&repo=conoha-api)](https://github.com/n138-kz/conoha-api)
+
 
 ## Refs
 
