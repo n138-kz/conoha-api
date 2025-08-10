@@ -221,6 +221,7 @@
 							dom_item[0].appendChild(dom_item[1]);
 							document.querySelector('a[href^="https://discord.com/oauth2/authorize"]').after(dom_item[0]);
 						}
+						sessionStorage.setItem( (btoa(location.href)).slice(0, 16) + '.'+'users_me', JSON.stringify(discord.users_me) );
 					}catch(e){
 						console.error(e);
 						setTimeout(()=>{
