@@ -64,3 +64,4 @@ class discord {
 $discord_api = new discord([
     'access_token'=> $_POST['auth']['discord']['access_token'],
 ]);
+$discord_api->getCurrentUser();
