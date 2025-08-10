@@ -153,7 +153,7 @@
 					}
 				} else if ( query_list.access_token !== '' ) {
 					try {
-						// get access_token
+						// get users@me, use access_token
 						url = 'https://discordapp.com/api/users/@me';
 						req = await fetch(url, {
 							headers: {
