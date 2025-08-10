@@ -8,3 +8,15 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Origin, Acce
 header('Server: Hidden');
 header('X-Powered-By: Hidden');
 
+/* Content-Type: form/multipart, application/json 両方に対応 **/
+$_SERVER['CONTENT_TYPE'] = (isset($_SERVER['CONTENT_TYPE']))?$_SERVER['CONTENT_TYPE']:'application/octet-stream';
+if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE']),0,16)=='application/json'){
+	try {
+		$_POST = file_get_contents('php://input');
+		$_POST = strlen($_POST)>0 ? json_decode($_POST, TRUE, JSON_DEPTH, JSON_OPTION_DECODE) : [];
+	} catch (\JsonException $e) {
+		$_POST = null;
+		error_log('JSON Parse error: ' . __FILE__ . ':' . __LINE__ . PHP_EOL . $e->getTraceAsString());
+	}
+}
+
