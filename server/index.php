@@ -23,3 +23,41 @@ if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE'
 	}
 }
 
+class discord {
+    function __construct ($options=[
+        'access_token'=>null,
+    ]) {
+        $this->access_token = $options['access_token'];
+        if (!isset($this->access_token) || strlen($this->access_token)==0) {
+            error_log('Unable the Class ' . get_class() . ' Initialize.');
+            exit(1);
+        }
+    }
+    function getCurrentUser () {
+        /* 
+        * name: getCurrentUser
+        * return: objective-array
+        **/
+        $api_endpoint = 'https://discordapp.com/api/users/@me';
+        $api_customHeader = [
+            'Authorization: Bearer ' . $this->access_token,
+        ];
+        error_log(json_encode([
+            $_SERVER['REMOTE_ADDR'],
+            $api_endpoint,
+            $api_customHeader,
+        ], JSON_UNESCAPED_SLASHES));
+        
+        $curl_req = curl_init($api_endpoint);
+        curl_setopt($curl_req, CURLOPT_HTTPHEADER, $api_customHeader);
+        curl_setopt($curl_req, CURLOPT_FRESH_CONNECT, TRUE);
+        curl_setopt($curl_req, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl_req, CURLOPT_FOLLOWLOCATION, TRUE);
+
+        $curl_res=curl_exec($curl_req);
+        $curl_res=json_decode($curl_res, TRUE);
+
+        return $curl_res; /* objective-array **/
+    }
+}
+
