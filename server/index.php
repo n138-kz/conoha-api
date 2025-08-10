@@ -16,7 +16,7 @@ $_SERVER['CONTENT_TYPE'] = (isset($_SERVER['CONTENT_TYPE']))?$_SERVER['CONTENT_T
 if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE']),0,16)=='application/json'){
 	try {
 		$_POST = file_get_contents('php://input');
-		$_POST = strlen($_POST)>0 ? json_decode($_POST, TRUE, JSON_DEPTH, JSON_OPTION_DECODE) : [];
+		$_POST = strlen($_POST)>0 ? json_decode($_POST) : [];
 	} catch (\JsonException $e) {
 		$_POST = null;
 		error_log('JSON Parse error: ' . __FILE__ . ':' . __LINE__ . PHP_EOL . $e->getTraceAsString());
