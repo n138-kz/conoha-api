@@ -420,7 +420,7 @@
 					query_list.iat = ( query_list.iat === "" || query_list.iat === null || query_list.iat === undefined )?'':query_list.iat;
 					query_list.eat = ( query_list.eat === "" || query_list.eat === null || query_list.eat === undefined )?'':query_list.eat;
 
-					external_api.endpoint = `https://api.n138.jp/conoha-api/server/?q=${external_api.endpoint}`;
+					external_api.endpoint = `https://api.n138.jp/conoha-api/server/?url=${external_api.endpoint}&method=POST`;
 					external_api.data = JSON.parse(external_api.data);
 					external_api['data']['auth']['discord'] = {
 						access_token: query_list.access_token,
@@ -659,3 +659,4 @@
 	<a href="https://github.com/n138-kz/conoha-api" target="_blank"><img src="https://github-readme-stats.vercel.app/api/pin/?locale=ja&show_owner=true&theme=graywhite&username=n138-kz&repo=conoha-api" alt="GitHub Extra Pins"></a>
 </body>
 </html>
+
