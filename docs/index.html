@@ -426,10 +426,11 @@
 					},
 					body: external_api.data,
 				});
-				console.log(req.ok);
+				console.log('request.ok?: ', req.ok);
+				console.debug({request:req});
 				
 				let res = await req.json();
-				console.debug({request:req,response:res});
+				console.debug({response:res});
 
 			} catch (th) {
 				console.error('Error:', th.message, th.stack);
