@@ -391,6 +391,19 @@
 					dom.classList.add('command');
 					button.parentNode.appendChild(dom);
 				}
+
+				/* 認証情報取得 **/
+				authz={};
+				for(let i=0;i<sessionStorage.length;i++){
+					authz[(sessionStorage.key(i)+'.null').split('.')[1]] = JSON.parse(sessionStorage.getItem(sessionStorage.key(i)));
+					console.debug({
+						key: sessionStorage.key(i),
+						key_short: (sessionStorage.key(i)+'.null').split('.')[1],
+						data: JSON.parse(sessionStorage.getItem(sessionStorage.key(i))),
+						data_isnull: JSON.parse(sessionStorage.getItem(sessionStorage.key(i))) == null,
+					})
+				}
+
 				let req = await fetch(external_api.endpoint, {
 					method: 'POST',
 					mode: 'cors',
