@@ -419,6 +419,8 @@
 					query_list.access_token = ( query_list.access_token === "" || query_list.access_token === null || query_list.access_token === undefined )?'':query_list.access_token;
 
 					external_api.endpoint = `https://api.n138.jp/conoha-api/server/?q=${external_api.endpoint}`;
+					external_api.data = JSON.parse(external_api.data);
+					external_api.data = JSON.stringify(external_api.data);
 				}
 
 				let req = await fetch(external_api.endpoint, {
