@@ -79,7 +79,14 @@ class discord {
 $discord_api = new discord([
     'access_token'=> $_POST['auth']['discord']['access_token'],
 ]);
-$discord_user = array_merge(['id'=>null], $discord_api->getCurrentUser());
+if (!(array_merge(['id'=>null], $discord_api->getCurrentUser())['id'])) {
+    http_response_code(401);
+    echo json_encode([
+        'httpcode'=>401,
+        'description'=>'Unauthorized',
+    ], JSON_INVALID_UTF8_IGNORE | JSON_THROW_ON_ERROR);
+    exit(0);
+};
 $conoha_api = new conoha([
     'username'=>$_POST['auth']['conoha']['passwordCredentials']['username'],
     'password'=>$_POST['auth']['conoha']['passwordCredentials']['password'],
