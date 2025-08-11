@@ -16,7 +16,7 @@ jobs:
       - working-directory: build-env-gh-actions/
         run: docker compose build
       - working-directory: build-env-gh-actions/
-        run: docker compose convert
+        run: docker compose config
       - working-directory: build-env-gh-actions/
         run: docker compose up -d
       - working-directory: build-env-gh-actions/
