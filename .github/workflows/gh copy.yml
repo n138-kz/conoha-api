@@ -1,4 +1,4 @@
-name: n138-kz.github.io
+name: gh-test-force-fail
 
 on:
   push:
