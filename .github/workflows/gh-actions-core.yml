@@ -7,6 +7,16 @@ permissions:
   contents: read
 
 jobs:
+    check_secrets_DISCORD_ACCESS_TOKEN:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: check
+              env: 
+                target: ${{ secrets.DISCORD_ACCESS_TOKEN }}
+              if: ${{ env.target }} == ''
+              run: exit 1
+
     build:
         runs-on: ubuntu-latest
         steps:
