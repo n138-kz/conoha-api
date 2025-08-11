@@ -23,6 +23,7 @@ jobs:
             docker compose exec \
                 -it gh-actions-core \
                     ls -l /var/www/html
+      - run: echo {} | jq > request.json
       - run: |
             docker compose exec \
                 -it gh-actions-core \
