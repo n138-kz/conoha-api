@@ -9,11 +9,11 @@ permissions:
 jobs:
     check_secrets_DISCORD_ACCESS_TOKEN:
         runs-on: ubuntu-latest
+        env: 
+            target: ${{ secrets.DISCORD_ACCESS_TOKEN }}
         steps:
             - uses: actions/checkout@v4
             - name: check is NG
-              env: 
-                target: ${{ secrets.DISCORD_ACCESS_TOKEN }}
               if: env.target == ''
               run: exit 1
 
