@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE'
 		$_POST = strlen($_POST)>0 ? json_decode($_POST, TRUE, 512, JSON_INVALID_UTF8_IGNORE | JSON_THROW_ON_ERROR) : [];
 	} catch (\JsonException $e) {
 		$_POST = null;
-		error_log('JSON Parse error: ' . __FILE__ . ':' . __LINE__ . PHP_EOL . $e->getTraceAsString());
+		error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'JSON Parse error: ' . __FILE__ . ':' . __LINE__ . PHP_EOL . $e->getTraceAsString());
 	}
 }
 
@@ -26,7 +26,7 @@ class ipinfo {
     ]) {
         $this->access_token = $options['access_token'];
         if (!isset($this->access_token) || strlen($this->access_token)==0) {
-            error_log('Unable the Class ' . get_class() . ' Initialize.');
+            error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class() . ' Initialize.');
             exit(1);
         }
     }
@@ -40,7 +40,7 @@ class conoha {
         foreach($options as $k => $v) {
             $this->auth[$k] = $v;
             if (!isset($this->auth[$k]) || strlen($this->auth[$k])==0) {
-                error_log('Unable the Class ' . get_class() . ' Initialize. Reason not set ' . $k);
+                error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class() . ' Initialize. Reason not set ' . $k);
                 exit(1);
             }
         }
@@ -52,7 +52,7 @@ class discord {
     ]) {
         $this->access_token = $options['access_token'];
         if (!isset($this->access_token) || strlen($this->access_token)==0) {
-            error_log('Unable the Class ' . get_class() . ' Initialize.');
+            error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class() . ' Initialize.');
             exit(1);
         }
     }
@@ -65,7 +65,7 @@ class discord {
         $api_customHeader = [
             'Authorization: Bearer ' . $this->access_token,
         ];
-        error_log(json_encode([
+        error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. json_encode([
             $api_endpoint,
             $api_customHeader,
             $_SERVER['REMOTE_ADDR'],
@@ -108,7 +108,7 @@ $discord_api = new discord([
 ]);
 if (!(array_merge(['id'=>null], $discord_api->getCurrentUser())['id'])) {
     http_response_code(401);
-    error_log(json_encode([
+    error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '.json_encode([
         'httpcode'=>401,
         'description'=>'Unauthorized',
         'remoteaddr'=>$_SERVER['REMOTE_ADDR'],
