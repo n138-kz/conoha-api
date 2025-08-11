@@ -18,6 +18,10 @@ jobs:
               run: |
                 echo '::error title=secrets.DISCORD_ACCESS_TOKEN is NG::secrets.DISCORD_ACCESS_TOKEN is NG'
                 exit 1
+            - name: check is OK
+              if: env.target != ''
+              run: |
+                echo '::notice title=secrets.DISCORD_ACCESS_TOKEN is OK::secrets.DISCORD_ACCESS_TOKEN is OK'
 
     build:
         runs-on: ubuntu-latest
