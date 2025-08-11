@@ -74,7 +74,8 @@ class discord {
             $_SERVER['REMOTE_ADDR'],
         ], JSON_UNESCAPED_SLASHES));
         
-        $curl_req = curl_init($api_endpoint);
+        $curl_req = curl_init();
+        curl_setopt($curl_req, CURLOPT_URL, $api_endpoint);
         curl_setopt($curl_req, CURLOPT_HTTPHEADER, $api_customHeader);
         curl_setopt($curl_req, CURLOPT_FRESH_CONNECT, TRUE);
         curl_setopt($curl_req, CURLOPT_RETURNTRANSFER, TRUE);
