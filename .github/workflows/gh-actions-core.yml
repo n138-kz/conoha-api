@@ -23,6 +23,22 @@ jobs:
               run: |
                 echo '::notice title=secrets.DISCORD_ACCESS_TOKEN is OK::secrets.DISCORD_ACCESS_TOKEN is OK'
 
+    check_secrets_IPINFO_ACCESS_TOKEN:
+        runs-on: ubuntu-latest
+        env: 
+            target: ${{ secrets.IPINFO_ACCESS_TOKEN }}
+        steps:
+            - uses: actions/checkout@v4
+            - name: check is NG
+              if: env.target == ''
+              run: |
+                echo '::error title=secrets.IPINFO_ACCESS_TOKEN is NG::secrets.IPINFO_ACCESS_TOKEN is NG'
+                exit 1
+            - name: check is OK
+              if: env.target != ''
+              run: |
+                echo '::notice title=secrets.IPINFO_ACCESS_TOKEN is OK::secrets.IPINFO_ACCESS_TOKEN is OK'
+
     build:
         runs-on: ubuntu-latest
         steps:
