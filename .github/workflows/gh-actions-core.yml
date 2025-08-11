@@ -32,6 +32,7 @@ jobs:
       - run: cat request.json | jq '.auth.discord |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
       - run: cat request.json | jq '.auth.ipinfo |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
       - run: cat request.json | jq '.auth.conoha |= .+ {"passwordCredentials":{}}' | tee request2.json && mv request2.json request.json
+      - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"username":""}' | tee request2.json && mv request2.json request.json
       - run: cat request.json | jq
       - working-directory: build-env-gh-actions/
         run: |
