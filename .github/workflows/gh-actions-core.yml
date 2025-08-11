@@ -90,6 +90,10 @@ jobs:
     build:
         needs:
             - check_secrets_DISCORD_ACCESS_TOKEN
+            - check_secrets_IPINFO_ACCESS_TOKEN
+            - check_secrets_CONOHA_TENANTID
+            - check_secrets_CONOHA_USERNAME
+            - check_secrets_CONOHA_PASSWORD
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
