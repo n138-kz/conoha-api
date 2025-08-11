@@ -1,0 +1,14 @@
+name: n138-kz.github.io
+
+on:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: exit 1
+        run: exit 1
