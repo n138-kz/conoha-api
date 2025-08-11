@@ -20,4 +20,10 @@ jobs:
       - working-directory: build-env-gh-actions/
         run: docker compose up -d
       - working-directory: build-env-gh-actions/
-        run: docker compose exec -it gh-actions-core
+        run: |
+            docker compose exec \
+                -it gh-actions-core \
+                    curl \
+                        -X GET \
+                        -H 'Content-Type: application/json'
+                        http://gh-actions-core/
