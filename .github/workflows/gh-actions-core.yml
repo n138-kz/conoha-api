@@ -71,6 +71,22 @@ jobs:
               run: |
                 echo '::notice title=secrets.CONOHA_USERNAME is OK::secrets.CONOHA_USERNAME is OK'
 
+    check_secrets_CONOHA_PASSWORD:
+        runs-on: ubuntu-latest
+        env: 
+            target: ${{ secrets.CONOHA_PASSWORD }}
+        steps:
+            - uses: actions/checkout@v4
+            - name: check is NG
+              if: env.target == ''
+              run: |
+                echo '::error title=secrets.CONOHA_PASSWORD is NG::secrets.CONOHA_PASSWORD is NG'
+                exit 1
+            - name: check is OK
+              if: env.target != ''
+              run: |
+                echo '::notice title=secrets.CONOHA_PASSWORD is OK::secrets.CONOHA_PASSWORD is OK'
+
     build:
         runs-on: ubuntu-latest
         steps:
