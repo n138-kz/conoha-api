@@ -24,6 +24,7 @@ jobs:
                 -it gh-actions-core \
                     ls -l /var/www/html
       - run: echo {} | jq > request.json
+      - run: cat request.json | jq '. |= .+ {"auth":{}}' | tee request2.json && mv request2.json request.json
       - run: |
             docker compose exec \
                 -it gh-actions-core \
