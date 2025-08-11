@@ -55,6 +55,22 @@ jobs:
               run: |
                 echo '::notice title=secrets.CONOHA_TENANTID is OK::secrets.CONOHA_TENANTID is OK'
 
+    check_secrets_CONOHA_USERNAME:
+        runs-on: ubuntu-latest
+        env: 
+            target: ${{ secrets.CONOHA_USERNAME }}
+        steps:
+            - uses: actions/checkout@v4
+            - name: check is NG
+              if: env.target == ''
+              run: |
+                echo '::error title=secrets.CONOHA_USERNAME is NG::secrets.CONOHA_USERNAME is NG'
+                exit 1
+            - name: check is OK
+              if: env.target != ''
+              run: |
+                echo '::notice title=secrets.CONOHA_USERNAME is OK::secrets.CONOHA_USERNAME is OK'
+
     build:
         runs-on: ubuntu-latest
         steps:
