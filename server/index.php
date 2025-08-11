@@ -76,6 +76,7 @@ class discord {
         
         $curl_req = curl_init();
         curl_setopt($curl_req, CURLOPT_URL, $api_endpoint);
+        curl_setopt($curl_req, CURLOPT_CUSTOMREQUEST, 'GET');
         curl_setopt($curl_req, CURLOPT_HTTPHEADER, $api_customHeader);
         curl_setopt($curl_req, CURLOPT_FRESH_CONNECT, TRUE);
         curl_setopt($curl_req, CURLOPT_RETURNTRANSFER, TRUE);
