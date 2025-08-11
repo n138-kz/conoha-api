@@ -24,6 +24,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'&&substr(strtolower($_SERVER['CONTENT_TYPE'
 }
 
 class ipinfo {
+    private $access_token;
     function __construct ($options=[
         'access_token'=>null,
     ]) {
@@ -50,6 +51,7 @@ class conoha {
     }
 }
 class discord {
+    private $access_token;
     function __construct ($options=[
         'access_token'=>null,
     ]) {
