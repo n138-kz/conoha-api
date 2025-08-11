@@ -1,0 +1,23 @@
+services:
+  gh-actions-core:
+    container_name: gh-actions-core
+    build:
+      context: ../
+      dockerfile: ./build-env-gh-actions/Dockerfile
+    pull_policy: build
+    environment:
+      TZ: Asia/Tokyo
+      LANG: C
+      LANGUAGE: C
+      LC_ALL: C
+    restart: always
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www/html
+        read_only: true
+    logging: 
+      driver: json-file
+      options:
+        max-size: "1024k"
+        max-file: "10"

@@ -1,0 +1,23 @@
+name: gh-actions-core
+
+on:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker pull php
+      - run: docker pull php:apache
+      - working-directory: build-env-gh-actions/
+        run: docker compose build
+      - working-directory: build-env-gh-actions/
+        run: docker compose convert
+      - working-directory: build-env-gh-actions/
+        run: docker compose up -d
+      - working-directory: build-env-gh-actions/
+        run: docker compose exec -it gh-actions-core
