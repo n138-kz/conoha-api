@@ -85,6 +85,23 @@ class discord {
 }
 
 $requests = [];
+$requests = array_merge([
+    'auth' => [
+        'discord' => [
+            'access_token' => null,
+        ],
+        'conoha' => [
+            'passwordCredentials' => [
+                'username' => null,
+                'password' => null,
+            ],
+            'tenantId' => null,
+        ],
+        'ipinfo' => [
+            'access_token' => null,
+        ],
+    ],
+], $requests);
 $requests = array_merge($requests, $_POST);
 $discord_api = new discord([
     'access_token'=> $requests['auth']['discord']['access_token'],
