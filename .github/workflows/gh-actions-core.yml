@@ -127,6 +127,10 @@ jobs:
             - working-directory: build-env-gh-actions/
               run: file ../request.json
             - working-directory: build-env-gh-actions/
+              run: cat ../request.json
+            - working-directory: build-env-gh-actions/
+              run: cat ../request.json | jq
+            - working-directory: build-env-gh-actions/
               run: |
                 docker compose exec \
                     -it gh-actions-core \
