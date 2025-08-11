@@ -19,7 +19,8 @@ jobs:
         run: docker compose config
       - working-directory: build-env-gh-actions/
         run: docker compose up -d
-      - run: |
+      - working-directory: build-env-gh-actions/
+        run: |
             docker compose exec \
                 -it gh-actions-core \
                     ls -l /var/www/html
@@ -31,7 +32,8 @@ jobs:
       - run: cat request.json | jq '.auth.discord |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
       - run: cat request.json | jq '.auth.ipinfo |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
       - run: cat request.json | jq
-      - run: |
+      - working-directory: build-env-gh-actions/
+        run: |
             docker compose exec \
                 -it gh-actions-core \
                     curl \
