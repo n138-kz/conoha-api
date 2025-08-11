@@ -84,8 +84,10 @@ class discord {
     }
 }
 
+$requests = [];
+$requests = array_merge($requests, $_POST);
 $discord_api = new discord([
-    'access_token'=> $_POST['auth']['discord']['access_token'],
+    'access_token'=> $requests['auth']['discord']['access_token'],
 ]);
 if (!(array_merge(['id'=>null], $discord_api->getCurrentUser())['id'])) {
     http_response_code(401);
@@ -101,7 +103,7 @@ if (!(array_merge(['id'=>null], $discord_api->getCurrentUser())['id'])) {
     exit(0);
 };
 $conoha_api = new conoha([
-    'username'=>$_POST['auth']['conoha']['passwordCredentials']['username'],
-    'password'=>$_POST['auth']['conoha']['passwordCredentials']['password'],
-    'tenantid'=>$_POST['auth']['conoha']['tenantId'],
+    'username'=>$requests['auth']['conoha']['passwordCredentials']['username'],
+    'password'=>$requests['auth']['conoha']['passwordCredentials']['password'],
+    'tenantid'=>$requests['auth']['conoha']['tenantId'],
 ]);
