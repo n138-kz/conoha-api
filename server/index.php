@@ -124,3 +124,9 @@ $conoha_api = new conoha([
     'password'=>$requests['auth']['conoha']['passwordCredentials']['password'],
     'tenantid'=>$requests['auth']['conoha']['tenantId'],
 ]);
+
+http_response_code(501);
+echo json_encode([
+    'httpcode'=>501,
+    'description'=>'Not Implemented',
+], JSON_INVALID_UTF8_IGNORE | JSON_THROW_ON_ERROR);
