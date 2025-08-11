@@ -118,8 +118,8 @@ jobs:
             - run: cat request.json | jq '.auth.discord |= .+ {"access_token":"${{ secrets.DISCORD_ACCESS_TOKEN }}"}' | tee request2.json && mv request2.json request.json
             - run: cat request.json | jq '.auth.ipinfo |= .+ {"access_token":"${{ secrets.IPINFO_ACCESS_TOKEN }}"}' | tee request2.json && mv request2.json request.json
             - run: cat request.json | jq '.auth.conoha |= .+ {"passwordCredentials":{}}' | tee request2.json && mv request2.json request.json
-            - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"username":""}' | tee request2.json && mv request2.json request.json
             - run: cat request.json | jq '.auth.conoha |= .+ {"tenantId":""}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"username":"${{ secrets.CONOHA_USERNAME }}"}' | tee request2.json && mv request2.json request.json
             - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"password":"${{ secrets.CONOHA_PASSWORD }}"}' | tee request2.json && mv request2.json request.json
             - run: cat request.json | jq
             - working-directory: build-env-gh-actions/
