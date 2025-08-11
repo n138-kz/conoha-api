@@ -88,6 +88,8 @@ jobs:
                 echo '::notice title=secrets.CONOHA_PASSWORD is OK::secrets.CONOHA_PASSWORD is OK'
 
     build:
+        needs:
+            - check_secrets_DISCORD_ACCESS_TOKEN
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
