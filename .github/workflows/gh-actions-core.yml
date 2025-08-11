@@ -23,6 +23,11 @@ jobs:
         run: |
             docker compose exec \
                 -it gh-actions-core \
+                    ls -l /var/www/html
+      - working-directory: build-env-gh-actions/
+        run: |
+            docker compose exec \
+                -it gh-actions-core \
                     curl \
                         -X GET \
                         -H 'Content-Type: application/json' \
