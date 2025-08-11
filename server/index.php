@@ -30,7 +30,7 @@ class ipinfo {
     ]) {
         $this->access_token = $options['access_token'];
         if (!isset($this->access_token) || strlen($this->access_token)==0) {
-            error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class(self) . ' Initialize.');
+            error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class($this) . ' Initialize.');
             exit(1);
         }
     }
@@ -44,7 +44,7 @@ class conoha {
         foreach($options as $k => $v) {
             $this->auth[$k] = $v;
             if (!isset($this->auth[$k]) || strlen($this->auth[$k])==0) {
-                error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class(self) . ' Initialize. Reason not set ' . $k);
+                error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class($this) . ' Initialize. Reason not set ' . $k);
                 exit(1);
             }
         }
@@ -57,7 +57,7 @@ class discord {
     ]) {
         $this->access_token = $options['access_token'];
         if (!isset($this->access_token) || strlen($this->access_token)==0) {
-            error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class(self) . ' Initialize.');
+            error_log('['.__LINE__.'] ['.$_SERVER['REMOTE_ADDR'].'] '. 'Unable the Class ' . get_class($this) . ' Initialize.');
             exit(1);
         }
     }
