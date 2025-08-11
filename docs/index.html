@@ -396,8 +396,8 @@
 					dom.innerHTML += 'echo -e "\\e[32m${conoha_auth_token}\\e[m"';
 					dom.classList.add('message');
 					dom.classList.add('command');
-					dom.setAttribute('onclick', 'setTimeout(()=>{this.remove()},3000)')
-					dom.setAttribute('onload', 'setTimeout(()=>{this.remove()},3000)')
+					dom.setAttribute('onclick', 'console.debug("Deleting:", this, setTimeout(()=>{this.remove()},3000))')
+					dom.setAttribute('onload', 'console.debug("Deleting:", this, setTimeout(()=>{this.remove()},3000))')
 					button.parentNode.appendChild(dom);
 				}
 
@@ -454,8 +454,8 @@
 				dom.innerText = `Error: ${th.message}`;
 				dom.classList.add('message');
 				dom.classList.add('warning');
-				dom.setAttribute('onclick', 'setTimeout(()=>{this.remove()},3000)')
-				dom.setAttribute('onload', 'setTimeout(()=>{this.remove()},3000)')
+				dom.setAttribute('onclick', 'console.debug("Deleting:", this, setTimeout(()=>{this.remove()},3000))')
+				dom.setAttribute('onload', 'console.debug("Deleting:", this, setTimeout(()=>{this.remove()},3000))')
 				button.parentNode.appendChild(dom);
 			}
 			
