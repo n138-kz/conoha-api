@@ -29,4 +29,5 @@ jobs:
                     curl \
                         -X GET \
                         -H 'Content-Type: application/json' \
+                        -d '{"auth":{"discord":{"access_token":null}}}' \
                         http://gh-actions-core/server/
