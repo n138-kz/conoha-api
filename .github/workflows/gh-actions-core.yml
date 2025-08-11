@@ -7,41 +7,41 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: docker pull php
-      - run: docker pull php:apache
-      - working-directory: build-env-gh-actions/
-        run: docker compose build
-      - working-directory: build-env-gh-actions/
-        run: docker compose config
-      - working-directory: build-env-gh-actions/
-        run: docker compose up -d
-      - working-directory: build-env-gh-actions/
-        run: |
-            docker compose exec \
-                -it gh-actions-core \
-                    ls -l /var/www/html
-      - run: echo {} | jq > request.json
-      - run: cat request.json | jq '. |= .+ {"auth":{}}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth |= .+ {"discord":{}}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth |= .+ {"ipinfo":{}}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth |= .+ {"conoha":{}}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth.discord |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth.ipinfo |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth.conoha |= .+ {"passwordCredentials":{}}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"username":""}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"password":""}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq '.auth.conoha |= .+ {"tenantId":""}' | tee request2.json && mv request2.json request.json
-      - run: cat request.json | jq
-      - working-directory: build-env-gh-actions/
-        run: |
-            docker compose exec \
-                -it gh-actions-core \
-                    curl \
-                        -X GET \
-                        -H 'Content-Type: application/json' \
-                        -d @../request.json \
-                        http://gh-actions-core/server/
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: docker pull php
+            - run: docker pull php:apache
+            - working-directory: build-env-gh-actions/
+              run: docker compose build
+            - working-directory: build-env-gh-actions/
+              run: docker compose config
+            - working-directory: build-env-gh-actions/
+              run: docker compose up -d
+            - working-directory: build-env-gh-actions/
+              run: |
+                docker compose exec \
+                    -it gh-actions-core \
+                        ls -l /var/www/html
+            - run: echo {} | jq > request.json
+            - run: cat request.json | jq '. |= .+ {"auth":{}}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth |= .+ {"discord":{}}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth |= .+ {"ipinfo":{}}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth |= .+ {"conoha":{}}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth.discord |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth.ipinfo |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth.conoha |= .+ {"passwordCredentials":{}}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"username":""}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth.conoha.passwordCredentials |= .+ {"password":""}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq '.auth.conoha |= .+ {"tenantId":""}' | tee request2.json && mv request2.json request.json
+            - run: cat request.json | jq
+            - working-directory: build-env-gh-actions/
+              run: |
+                docker compose exec \
+                    -it gh-actions-core \
+                        curl \
+                            -X GET \
+                            -H 'Content-Type: application/json' \
+                            -d @../request.json \
+                            http://gh-actions-core/server/
