@@ -123,6 +123,10 @@ jobs:
             - run: cat request.json | jq '.auth.conoha |= .+ {"tenantId":"${{ secrets.CONOHA_TENANTID }}"}' | tee request2.json && mv request2.json request.json
             - run: cat request.json | jq
             - working-directory: build-env-gh-actions/
+              run: ls -l ../request.json
+            - working-directory: build-env-gh-actions/
+              run: file ../request.json
+            - working-directory: build-env-gh-actions/
               run: |
                 docker compose exec \
                     -it gh-actions-core \
