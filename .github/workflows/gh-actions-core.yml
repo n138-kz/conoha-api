@@ -39,6 +39,22 @@ jobs:
               run: |
                 echo '::notice title=secrets.IPINFO_ACCESS_TOKEN is OK::secrets.IPINFO_ACCESS_TOKEN is OK'
 
+    check_secrets_CONOHA_TENANTID:
+        runs-on: ubuntu-latest
+        env: 
+            target: ${{ secrets.CONOHA_TENANTID }}
+        steps:
+            - uses: actions/checkout@v4
+            - name: check is NG
+              if: env.target == ''
+              run: |
+                echo '::error title=secrets.CONOHA_TENANTID is NG::secrets.CONOHA_TENANTID is NG'
+                exit 1
+            - name: check is OK
+              if: env.target != ''
+              run: |
+                echo '::notice title=secrets.CONOHA_TENANTID is OK::secrets.CONOHA_TENANTID is OK'
+
     build:
         runs-on: ubuntu-latest
         steps:
