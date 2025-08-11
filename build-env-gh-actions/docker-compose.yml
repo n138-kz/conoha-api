@@ -13,7 +13,7 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: ./
+        source: ../
         target: /var/www/html
         read_only: true
     logging: 
