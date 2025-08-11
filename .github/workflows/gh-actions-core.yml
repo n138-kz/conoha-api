@@ -26,4 +26,4 @@ jobs:
                     curl \
                         -X GET \
                         -H 'Content-Type: application/json' \
-                        http://gh-actions-core/
+                        http://gh-actions-core/server/
