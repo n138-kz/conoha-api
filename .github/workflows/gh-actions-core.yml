@@ -15,7 +15,9 @@ jobs:
             - uses: actions/checkout@v4
             - name: check is NG
               if: env.target == ''
-              run: exit 1
+              run: |
+                echo '::error title=secrets.DISCORD_ACCESS_TOKEN is NG::secrets.DISCORD_ACCESS_TOKEN is NG'
+                exit 1
 
     build:
         runs-on: ubuntu-latest
