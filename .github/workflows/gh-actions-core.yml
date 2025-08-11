@@ -28,6 +28,7 @@ jobs:
       - run: cat request.json | jq '.auth |= .+ {"discord":{}}' | tee request2.json && mv request2.json request.json
       - run: cat request.json | jq '.auth |= .+ {"ipinfo":{}}' | tee request2.json && mv request2.json request.json
       - run: cat request.json | jq '.auth |= .+ {"conoha":{}}' | tee request2.json && mv request2.json request.json
+      - run: cat request.json | jq '.auth.discord |= .+ {"access_token":""}' | tee request2.json && mv request2.json request.json
       - run: |
             docker compose exec \
                 -it gh-actions-core \
