@@ -599,10 +599,7 @@
 	</form>
 	<form action="" method="post" name="vms_list">
 		<fieldset style="display: none;">
-			<legend></legend>
-			<fieldset>
-				<legend>compute-get_vms_list-v2</legend>
-			</fieldset>
+			<legend>compute-get_vms_list-v2</legend>
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
 		<input type="button" value="▽" onclick="toggle([this, 'fieldset'])">
@@ -611,9 +608,10 @@
 	</form>
 	<form action="" method="post" name="vms_listdetail">
 		<fieldset style="display: none;">
-			<legend></legend>
+			<legend>compute-get_vms_detail-v2</legend>
 			<fieldset>
-				<legend>compute-get_vms_detail-v2</legend>
+				<legend></legend>
+				<code>jq '.[][] | {id: .id, instance_name_tag: .metadata.instance_name_tag}'</code>
 			</fieldset>
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
