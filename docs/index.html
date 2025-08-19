@@ -460,6 +460,9 @@
 				} else if (button.parentNode.name == 'isoImages_list') {
 					external_api.endpoint = `https://compute.tyo1.conoha.io/v2/${atob(credentials.tenantId)}/iso-images`;
 					external_api.method = 'GET';
+				} else if (button.parentNode.name == 'vms_list') {
+					external_api.endpoint = `https://compute.tyo1.conoha.io/v2/${atob(credentials.tenantId)}/servers`;
+					external_api.method = 'GET';
 				}
 				external_api.data = JSON.stringify(external_api.data);
 				{
@@ -591,16 +594,17 @@
 		<input type="button" value="実行" onclick="exec(this)">
 		<span>compute-iso-list-show-v2</span>
 	</form>
-	<form action="" method="post" name="">
+	<form action="" method="post" name="vms_list">
 		<fieldset style="display: none;">
 			<legend></legend>
 			<fieldset>
-				<legend></legend>
+				<legend>compute-get_vms_list-v2</legend>
 			</fieldset>
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
 		<input type="button" value="▽" onclick="toggle([this, 'fieldset'])">
 		<input type="button" value="実行" onclick="exec(this)">
+		<span>compute-get_vms_list-v2</span>
 	</form>
 	<form action="" method="post" name="">
 		<fieldset style="display: none;">
