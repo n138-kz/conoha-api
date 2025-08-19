@@ -611,7 +611,7 @@
 			<legend>compute-get_vms_detail-v2</legend>
 			<fieldset>
 				<legend>VM-IDとControl-Panelに設定されているHostname</legend>
-				<code>jq '.[][] | {id: .id, instance_name_tag: .metadata.instance_name_tag}'</code>
+				<code>jq '.[][] | {id: .id, name: .name, instance_name_tag: .metadata.instance_name_tag}'</code>
 			</fieldset>
 		</fieldset>
 		<input type="button" value="▷" onclick="" disabled>
